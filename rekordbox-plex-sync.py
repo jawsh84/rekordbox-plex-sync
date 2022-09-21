@@ -1,5 +1,6 @@
 # file manipulation
 from distutils.log import debug
+from operator import getitem
 import os
 import glob
 import shutil
@@ -19,8 +20,8 @@ from collections import defaultdict
 EMPTY_TARGET_FOLDER = True
 SOURCE_FOLDER = '/Volumes/Samsung T5/DJ/Processed/'
 TARGET_FOLDER = '/Users/josh/Music/Plex DJ Library/'
-PLEX_USER = 'phillips.joshua@gmail.com'
-PLEX_PASSWORD = 'VTTKqJtrmyLv9YFP7A'
+PLEX_USER = 'user@domain.com'
+PLEX_PASSWORD = 'fido1234'
 PLEX_SERVER = 'Josh\'s MacBook Pro'
 PLEX_LIBRARY = 'DJ Music'
 # use for testing. limits how many files the script processes
@@ -84,6 +85,12 @@ print('Updating your Plex Library...')
 music.update()
 input('Press ENTER after the update is complete to continue.')
 
+# delete all the playlists we've previously created 
+playlists = music.playlists()
+for playlist in playlists:
+        if playlist.title[0:4] == '[RB]':
+            playlist.delete()        
+
 # create a dictionary of each rekordbox playlist
 playlist_dict = defaultdict(list)
 
@@ -91,7 +98,6 @@ print ('Creating playlists from Rekordbox tags...')
 tracks = music.searchTracks()
 for track in tracks:
     track_path = track.locations[0]
-    print('path:', track_path)
     tag = TinyTag.get(track_path)
     main_comment = tag.comment
     rekordbox_tags_start = main_comment.find('/*')
@@ -105,4 +111,4 @@ for track in tracks:
         playlist_dict[tag].append(track)
 
 for playlist_title, track_list in playlist_dict.items():
-    Playlist.create(server=plex, section=music, title=playlist_title, items=track_list)
+    Playlist.create(server=plex, section=music, title='[RB] '+ playlist_title, items=track_list)

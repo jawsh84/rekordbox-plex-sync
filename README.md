@@ -26,3 +26,17 @@ Synchronziation is unidirectional (from Rekordbox to Plex). The script copies al
 * PLEX_LIBRARY: The name of the library you want to sychronize to. E.g. 'DJ Music'.
 
 * TRACK_LIMIT: Used for testing. Use to limit the number of tracks the script will process. 
+
+RECOMMENDED PLEX SETTINGS
+To speed up library updates and avoid bad artist info/album art matches, the following Library settings are recommended:
+
+* Scanner: Plex Music
+* Agent: Personal Media Artists/Albums. Leave this on Plex Music if you want to have Plex try to find artist photos. Just know it doesn't always get it right and it substantially increases the time it take to update the library. 
+* Sonic Analysis: Off
+* Prefer Local Metdata: On
+* Artist Bios: Off
+* Album Reviews & Critic Ratings: Off
+* Popular Tracks: Off
+* Find Lyrics: Off
+* Genres: Embedded Tags
+* Album Art: Local Files Only
