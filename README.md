@@ -5,6 +5,7 @@ Synchronizes your Plex Media server to Rekordbox.
 Synchronziation is unidirectional (from Rekordbox to Plex). The script copies all of your music files to a new directory to avoid Plex modifiying any of your music and so that the file names are in a structure Plex can understand.  
 
 --HOW TO--
+* In Rekordbox preferences, turn Advanced->Browse->My Tag->Add "My Tag" to the "Comments" ON
 * Use pip to install all the modules in requirements.txt
 * Download rekordbox-plex-sync.py and set the constants at the top of the script (see CONSTANTS below)
 * Run python rekordbox-plex-sync.py
